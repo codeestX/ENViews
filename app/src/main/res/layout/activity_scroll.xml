@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#232a30"
+    android:gravity="center_horizontal">
+
+    <moe.codeest.enviews.ENScrollView
+        android:id="@+id/view_scroll"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="20dp"
+        app:scroll_line_color="#ffffff"
+        app:scroll_bg_line_color="#444a4f"
+        app:scroll_line_width="10"
+        app:scroll_bg_line_width="10"/>
+
+    <Button
+        android:id="@+id/btn_select"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="select"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/btn_unselect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="unselect"
+        android:layout_marginTop="20dp" />
+
+</LinearLayout>

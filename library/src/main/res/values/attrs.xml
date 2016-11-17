@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="refresh">
+        <attr name="refresh_line_color" format="color" />
+        <attr name="refresh_line_width" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="download">
+        <attr name="download_line_color" format="color" />
+        <attr name="download_bg_line_color" format="color" />
+        <attr name="download_text_color" format="color" />
+        <attr name="download_line_width" format="integer" />
+        <attr name="download_bg_line_width" format="integer" />
+        <attr name="download_text_size" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="play">
+        <attr name="play_line_color" format="color" />
+        <attr name="play_bg_line_color" format="color" />
+        <attr name="play_line_width" format="integer" />
+        <attr name="play_bg_line_width" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="scroll">
+        <attr name="scroll_line_color" format="color" />
+        <attr name="scroll_line_width" format="integer" />
+        <attr name="scroll_bg_line_color" format="color" />
+        <attr name="scroll_bg_line_width" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="search">
+        <attr name="search_line_color" format="color" />
+        <attr name="search_line_width" format="integer" />
+        <attr name="search_dot_size" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="volume">
+        <attr name="volume_line_color" format="color" />
+        <attr name="volume_line_width" format="integer" />
+        <attr name="volume_bg_line_color" format="color" />
+        <attr name="volume_bg_line_width" format="integer" />
+    </declare-styleable>
+
+</resources>
