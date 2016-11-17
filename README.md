@@ -3,7 +3,12 @@
 [![](https://jitpack.io/v/codeestX/ENViews.svg)](https://jitpack.io/#codeestX/ENViews)
 
 ENViews, A cool dynamic view library.All designed by [Nick Buturishvili](https://dribbble.com/nick_buturishvili
-)
+)  
+ENViews, 一个华丽丽的动效控件库，所有控件原型取自[Nick Buturishvili](https://dribbble.com/nick_buturishvili
+)的设计作品
+
+本项目为个人练习，没有经过系统的测试，发现问题或有建议欢迎[issue](https://github.com/codeestX/ENViews/issues)，email(codeest.dev@gmail.com),PR.如果你喜欢这些效果也欢迎戳个star支持一下.使用详情可以参考demo，如果需要引入到项目更推荐直接拷贝源码，方便根据需求随时自定义.
+
 
 #Preview
 | Original design | Android demo | Class |
