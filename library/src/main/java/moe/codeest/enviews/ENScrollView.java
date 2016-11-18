@@ -144,7 +144,7 @@ public class ENScrollView extends View {
         mCurrentState = STATE_SELECT;
         ValueAnimator valueAnimator = ValueAnimator.ofObject(new ArgbEvaluator(),
                 mBgLineColor, mLineColor);
-        valueAnimator.setDuration(700);
+        valueAnimator.setDuration(mDuration);
         valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
@@ -167,7 +167,7 @@ public class ENScrollView extends View {
         mCurrentState = STATE_UNSELECT;
         ValueAnimator valueAnimator = ValueAnimator.ofObject(new ArgbEvaluator(),
                 mLineColor, mBgLineColor);
-        valueAnimator.setDuration(700);
+        valueAnimator.setDuration(mDuration);
         valueAnimator.setInterpolator(new AccelerateDecelerateInterpolator());
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
