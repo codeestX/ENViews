@@ -7,7 +7,10 @@ ENViews, A cool dynamic view library.All designed by [Nick Buturishvili](https:/
 ENViews, 一个华丽丽的动效控件库，所有控件原型取自[Nick Buturishvili](https://dribbble.com/nick_buturishvili
 )的设计作品
 
-本项目为个人练习，没有经过系统的测试，发现问题或有建议欢迎[issue](https://github.com/codeestX/ENViews/issues)，email(codeest.dev@gmail.com),PR.如果你喜欢这些效果也欢迎戳个star支持一下.使用详情可以参考demo，如果需要引入到项目更推荐直接拷贝源码，方便根据需求随时自定义.
+本项目为个人练习，发现问题或有建议欢迎[issue](https://github.com/codeestX/ENViews/issues)，email(codeest.dev@gmail.com),PR.  
+如果你喜欢这些效果也欢迎戳个star支持一下.  
+使用详情可以参考demo，如果需要引入到项目比起依赖库更推荐直接拷贝对应view的源码，方便根据需求随时自定义.  
+源码中在关键的绘制点做了注释，方便阅读参考.
 
 
 #Preview
@@ -35,7 +38,7 @@ Step 1. Add the JitPack repository to your build file
 Step 2. Add the dependency
 
 	dependencies {
-	        compile 'com.github.codeestX:ENViews:v1.0.0'
+	        compile 'com.github.codeestX:ENViews:v1.0.1'
 	}
 	
 Step 3. See DemoProject for details.
