@@ -18,17 +18,17 @@
         app:play_bg_line_width="12"/>
 
     <Button
-        android:id="@+id/btn_pause"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="pause"
-        android:layout_marginTop="20dp" />
-
-    <Button
         android:id="@+id/btn_play"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="play"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:id="@+id/btn_pause"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="pause"
         android:layout_marginTop="20dp" />
 
 </LinearLayout>

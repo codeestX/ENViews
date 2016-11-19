@@ -119,7 +119,7 @@ public class ENSearchView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        if (mFraction <= 0.2) {
+        if (mFraction <= 0.2) { //嗷~ 放大镜手柄收缩
             canvas.drawCircle(mCenterX , mCenterY ,mCircleRadius - mCircleRadius * mFraction, mPaint);
             canvas.drawLine(mCenterX + mCircleRadius / (float) Math.sqrt(2) + 1.2f * mCircleRadius / (float) Math.sqrt(2) / 0.2f * mFraction,
                     mCenterY + mCircleRadius / (float) Math.sqrt(2) + 1.2f * mCircleRadius / (float) Math.sqrt(2) / 0.2f * mFraction,
@@ -132,13 +132,13 @@ public class ENSearchView extends View {
                 if (isDotShowing) {
                     isDotShowing = false;
                 } else {
-                    canvas.drawCircle(mCurrentPos[0], mCurrentPos[1], mDotSize, mPaint);
+                    canvas.drawCircle(mCurrentPos[0], mCurrentPos[1], mDotSize, mPaint);    //嗷~ 轨迹中的小球
                     isDotShowing = true;
                 }
             } else {
                 canvas.drawCircle(mCurrentPos[0], mCurrentPos[1], mDotSize, mPaint);
             }
-            if (mFraction <= 0.3) {
+            if (mFraction <= 0.3) { //嗷~ 内圈粘性部分
                 canvas.drawCircle(mCenterX , mCenterY ,0.8f * mCircleRadius + mCircleRadius * 2 * (mFraction - 0.2f), mPaint);
             } else {
                 canvas.drawCircle(mCenterX , mCenterY ,mCircleRadius , mPaint);
@@ -150,7 +150,7 @@ public class ENSearchView extends View {
                 canvas.drawArc(mRectF, 45 - 55 / 0.05f * (0.4f - mFraction), 110 / 0.05f * (0.4f - mFraction), false, mArcPaint);
             }
 
-            if (mFraction <= 0.75 && mFraction > 0.7) {
+            if (mFraction <= 0.75 && mFraction > 0.7) {  //嗷~ 外圈粘性部分
                 mArcPath.reset();
                 mArcPath.moveTo(mCenterX + mCircleRadius, mCenterY);
                 mArcPath.cubicTo(mCenterX + mCircleRadius + 8 / 0.05f * (mFraction - 0.7f), mCenterY + mCircleRadius / 2 + 8 / 0.05f * (mFraction - 0.7f),
@@ -165,7 +165,7 @@ public class ENSearchView extends View {
                         mCenterX, mCenterY + mCircleRadius);
                 canvas.drawPath(mArcPath, mPaint);
             }
-        } else {
+        } else {    //嗷~ 放大镜手柄伸长
             canvas.drawCircle(mCenterX , mCenterY ,mCircleRadius , mPaint);
             canvas.drawLine(mCenterX + 2.2f *mCircleRadius / (float) Math.sqrt(2) - 1.2f * mCircleRadius / (float) Math.sqrt(2) / 0.2f * (mFraction - 0.8f),
                     mCenterY + 2.2f * mCircleRadius / (float) Math.sqrt(2) - 1.2f * mCircleRadius / (float) Math.sqrt(2) / 0.2f * (mFraction - 0.8f),

@@ -14,7 +14,7 @@
         android:layout_marginTop="20dp"
         app:volume_line_color="#ffffff"
         app:volume_line_width="10"
-        app:volume_bg_line_color="#4f5559"
+        app:volume_bg_line_color="#64696d"
         app:volume_bg_line_width="10"/>
 
     <SeekBar

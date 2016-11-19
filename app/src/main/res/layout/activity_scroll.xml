@@ -15,20 +15,15 @@
         app:scroll_line_color="#ffffff"
         app:scroll_bg_line_color="#444a4f"
         app:scroll_line_width="10"
-        app:scroll_bg_line_width="10"/>
+        app:scroll_bg_line_width="10"
+        app:scroll_is_selected="false"
+        app:scroll_view_translation_x="16"/>
 
     <Button
-        android:id="@+id/btn_select"
+        android:id="@+id/btn_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="select"
-        android:layout_marginTop="20dp" />
-
-    <Button
-        android:id="@+id/btn_unselect"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="unselect"
+        android:text="switch"
         android:layout_marginTop="20dp" />
 
 </LinearLayout>

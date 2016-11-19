@@ -150,7 +150,7 @@ public class ENDownloadView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         switch (mCurrentState) {
-            case STATE_PRE:
+            case STATE_PRE: //嗷~ 开始阶段：线弹起小球
                 if (mFraction <= 0.4) {
                     canvas.drawCircle(mCenterX, mCenterY ,mCircleRadius, mBgPaint);
                     canvas.drawLine(mCenterX - mBaseLength, mCenterY, mCenterX, mCenterY + mBaseLength, mPaint);
@@ -172,7 +172,7 @@ public class ENDownloadView extends View {
                     canvas.drawLine(mCenterX - mBaseLength * 2.2f , mCenterY , mCenterX + mBaseLength * 2.2f, mCenterY, mPaint);
                 }
                 break;
-            case STATE_DOWNLOADING:
+            case STATE_DOWNLOADING: //嗷~ 下载阶段：波浪线与文字
                 if (mFraction <= 0.2) {
                     mTextPaint.setTextSize(mTextSize / 0.2f * mFraction);
                 }
@@ -195,7 +195,7 @@ public class ENDownloadView extends View {
                     canvas.drawText(String.format("%.2f", mCurrentSize) + getUnitStr(mUnit), mCenterX , mCenterY + 1.4f * mBaseLength , mTextPaint);
                 }
                 break;
-            case STATE_END:
+            case STATE_END: //嗷~ 结束阶段：线变勾
                 canvas.drawCircle(mCenterX, mCenterY ,mCircleRadius, mPaint);
                 if (mFraction <= 0.5) {
                     mTextPaint.setTextSize(mTextSize - mTextSize / 0.2f * mFraction);
@@ -210,7 +210,7 @@ public class ENDownloadView extends View {
                 canvas.drawLine(mCenterX - mBaseLength * 0.5f, mCenterY + mBaseLength * 0.5f * mFraction * 1.3f,
                         mCenterX + mBaseLength * 2.2f - mBaseLength * mFraction, mCenterY - mBaseLength * mFraction * 1.3f, mPaint);
                 break;
-            case STATE_RESET:
+            case STATE_RESET:   //嗷~ 复位阶段：勾变箭头
                 canvas.drawCircle(mCenterX, mCenterY ,mCircleRadius, mBgPaint);
                 canvas.drawLine(mCenterX - mBaseLength, mCenterY,
                         mCenterX - mBaseLength * 0.5f + mBaseLength * 0.5f * mFraction, mCenterY + mBaseLength * 0.65f + mBaseLength * 0.35f * mFraction, mPaint);

@@ -27,6 +27,8 @@
         <attr name="scroll_line_width" format="integer" />
         <attr name="scroll_bg_line_color" format="color" />
         <attr name="scroll_bg_line_width" format="integer" />
+        <attr name="scroll_is_selected" format="boolean" />
+        <attr name="scroll_view_translation_x" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="search">

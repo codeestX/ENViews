@@ -14,26 +14,22 @@ import moe.codeest.enviews.ENScrollView;
 public class ScrollActivity extends Activity{
 
     ENScrollView scrollView;
-    Button btnSelect;
-    Button btnUnSelect;
+    Button btnSwitch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scroll);
         scrollView = (ENScrollView) findViewById(R.id.view_scroll);
-        btnSelect = (Button) findViewById(R.id.btn_select);
-        btnUnSelect = (Button) findViewById(R.id.btn_unselect);
-        btnSelect.setOnClickListener(new View.OnClickListener() {
+        btnSwitch = (Button) findViewById(R.id.btn_switch);
+        btnSwitch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                scrollView.select();
-            }
-        });
-        btnUnSelect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                scrollView.unSelect();
+                if (scrollView.isSelected()) {
+                    scrollView.unSelect();
+                } else {
+                    scrollView.select();
+                }
             }
         });
     }

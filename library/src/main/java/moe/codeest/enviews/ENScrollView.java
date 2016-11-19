@@ -36,6 +36,10 @@ public class ENScrollView extends View {
 
     private static final int DEFAULT_DURATION = 700;
 
+    private static final int DEFAULT_VIEW_TRANSLATION_X = 16;
+
+    private static final boolean DEFAULT_STATE = false;
+
     private int mCurrentState = STATE_UNSELECT;
 
     private int mCurrentColor = DEFAULT_LINE_COLOR;
@@ -58,7 +62,7 @@ public class ENScrollView extends View {
 
     private float mPathLength;
 
-    private int mLineColor, mBgLineColor, mDuration;
+    private int mLineColor, mBgLineColor, mDuration, mViewTranslationX;
 
     public ENScrollView(Context context) {
         super(context);
@@ -72,6 +76,8 @@ public class ENScrollView extends View {
         int lineWidth = ta.getInteger(R.styleable.scroll_scroll_line_width, DEFAULT_LINE_WIDTH);
         int bgLineColor = ta.getInteger(R.styleable.scroll_scroll_bg_line_color, DEFAULT_BG_LINE_COLOR);
         int bgLineWidth = ta.getInteger(R.styleable.scroll_scroll_bg_line_width, DEFAULT_BG_LINE_WIDTH);
+        boolean isSelected = ta.getBoolean(R.styleable.scroll_scroll_is_selected, DEFAULT_STATE);
+        int viewTranslationX = ta.getInteger(R.styleable.scroll_scroll_view_translation_x, DEFAULT_VIEW_TRANSLATION_X);
         ta.recycle();
 
         mLineColor = lineColor;
@@ -99,6 +105,14 @@ public class ENScrollView extends View {
         mPathMeasure = new PathMeasure();
 
         mDuration = DEFAULT_DURATION;
+        mViewTranslationX = viewTranslationX;
+        if (isSelected) {
+            mFraction = 1;
+            mCurrentState = STATE_SELECT;
+        } else {
+            mFraction = 0;
+            mCurrentState = STATE_UNSELECT;
+        }
     }
 
     @Override
@@ -120,16 +134,16 @@ public class ENScrollView extends View {
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         canvas.save();
-        canvas.translate(mFraction *  mCircleRadius / 2, 0);
-        canvas.drawRoundRect(mRectF, mCircleRadius, mCircleRadius, mBgPaint);
+        canvas.translate(mFraction * mViewTranslationX, 0);
+        canvas.drawRoundRect(mRectF, mCircleRadius, mCircleRadius, mBgPaint);   //嗷~ 在这画背景线
         mDstPath.reset();
         mPathMeasure.getSegment(0 ,mPathLength / 2 * mFraction, mDstPath, true);
-        canvas.drawPath(mDstPath, mPaint);
+        canvas.drawPath(mDstPath, mPaint);  //嗷~ 在这画上半圈
         mDstPath.reset();
         mPathMeasure.getSegment(mPathLength - mPathLength / 2 * mFraction ,mPathLength, mDstPath, true);
-        canvas.drawPath(mDstPath, mPaint);
+        canvas.drawPath(mDstPath, mPaint);  //嗷~ 在这画下半圈
         mColorPaint.setColor(mCurrentColor);
-        if (mFraction <= 0.8 && mFraction > 0.2) {
+        if (mFraction <= 0.8 && mFraction > 0.2) {  //嗷~ 在这画球
             canvas.drawCircle(mCenterX - mCircleRadius + 2 * mCircleRadius * mFraction , mCenterY , mCircleRadius / 6 / 0.6f * (mFraction - 0.2f) , mColorPaint);
         } else if (mFraction > 0.8) {
             canvas.drawCircle(mCenterX - mCircleRadius + 2 * mCircleRadius * mFraction , mCenterY , mCircleRadius / 6 , mColorPaint);

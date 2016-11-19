@@ -31,7 +31,7 @@ public class ENVolumeView extends View{
 
     private static final int DEFAULT_LINE_COLOR = Color.WHITE;
 
-    private static final int DEFAULT_BG_LINE_COLOR = 0xff4f5559;
+    private static final int DEFAULT_BG_LINE_COLOR = 0xff64696d;
 
     private static final int DEFAULT_LINE_WIDTH = 10;
 
@@ -129,14 +129,14 @@ public class ENVolumeView extends View{
         super.onDraw(canvas);
         if (mCurrentState != STATE_VIBRATE) {
             if (mFraction <= 0.5) {
-                mDstPath.reset();
+                mDstPath.reset();   //嗷~ 在这画喇叭
                 mPathMeasure.getSegment(0, mPathLength * 0.38f - mPathLength * 0.13f * mFraction, mDstPath, true);
                 canvas.drawPath(mDstPath, mBgPaint);
                 mDstPath.reset();
                 mPathMeasure.getSegment(mPathLength * 0.62f + mPathLength * 0.13f * mFraction, mPathLength, mDstPath, true);
                 canvas.drawPath(mDstPath, mBgPaint);
 
-                canvas.save();
+                canvas.save();  //嗷~ 在这画X
                 canvas.translate(- mFraction * mBaseLength * 2, 0);
                 canvas.drawLine(mCenterX - mBaseLength * (0.5f - mFraction) , mCenterY - mBaseLength * (0.5f - mFraction)
                         ,mCenterX + mBaseLength * (0.5f - mFraction), mCenterY + mBaseLength * (0.5f - mFraction), mBgPaint);
@@ -144,7 +144,7 @@ public class ENVolumeView extends View{
                         ,mCenterX + mBaseLength * (0.5f - mFraction), mCenterY - mBaseLength * (0.5f - mFraction), mBgPaint);
                 canvas.restore();
             } else {
-                mDstPath.reset();
+                mDstPath.reset();   //嗷~ 在这画喇叭
                 mPathMeasure.getSegment(0, mPathLength * 0.25f + mPathLength * 0.13f * (mFraction - 0.5f), mDstPath, true);
                 canvas.drawPath(mDstPath, mBgPaint);
                 mDstPath.reset();
@@ -157,7 +157,7 @@ public class ENVolumeView extends View{
                 mPathMeasure.getSegment(mPathLength - mPathLength * 0.38f / 0.5f * (mFraction - 0.5f), mPathLength, mDstPath, true);
                 canvas.drawPath(mDstPath, mPaint);
 
-                canvas.save();
+                canvas.save();  //嗷~ 在这画小声波
                 canvas.translate( - (1 - mFraction) * mBaseLength * 2, 0);
                 canvas.drawArc(mCenterX - 0.5f * mBaseLength - mBaseLength / 0.5f * (mFraction - 0.5f),
                         mCenterY - mBaseLength / 0.5f * (mFraction - 0.5f),
@@ -172,7 +172,7 @@ public class ENVolumeView extends View{
                         mCenterY + mBaseLength / 0.5f * (mFraction - 0.5f), -55 / 50 * sVolume, 110 / 50 * sVolume  ,false, mPaint);
                 canvas.restore();
 
-                canvas.save();
+                canvas.save();  //嗷~ 在这画大声波
                 canvas.translate( - (1 - mFraction) * mBaseLength * 3, 0);
                 canvas.drawArc(mCenterX - 1.6f * mBaseLength / 0.5f * (mFraction - 0.5f),
                         mCenterY - 1.6f * mBaseLength / 0.5f * (mFraction - 0.5f),
@@ -188,14 +188,14 @@ public class ENVolumeView extends View{
                 canvas.restore();
             }
         } else {
-            mDstPath.reset();
+            mDstPath.reset();   //嗷~ 在这画喇叭
             mPathMeasure.getSegment(0, mPathLength * 0.38f, mDstPath, true);
             canvas.drawPath(mDstPath, mPaint);
             mDstPath.reset();
             mPathMeasure.getSegment(mPathLength - mPathLength * 0.38f, mPathLength, mDstPath, true);
             canvas.drawPath(mDstPath, mPaint);
 
-            canvas.save();
+            canvas.save();  //嗷~ 在这画小声波
             canvas.translate( - (1 - mFraction) * mBaseLength / 3, 0);
             canvas.drawArc(mCenterX - 1.5f * mBaseLength,
                     mCenterY - mBaseLength,
@@ -210,7 +210,7 @@ public class ENVolumeView extends View{
                     mCenterY + mBaseLength, -55 / 50 * sVolume, 110 / 50 * sVolume  ,false, mPaint);
             canvas.restore();
 
-            canvas.save();
+            canvas.save();  //嗷~ 在这画大声波
             canvas.translate( - (1 - mFraction) * mBaseLength / 3, 0);
             canvas.drawArc(mCenterX - 1.6f * mBaseLength,
                     mCenterY - 1.6f * mBaseLength,

@@ -53,6 +53,8 @@ public class ENLoadingView extends View {
         mPaint = new Paint[4];
         mBeerPaint = new Paint[4];
         mBubblePaint = new Paint[4];
+        mPath = new Path();
+        mBgPath = new Path();
         isItemReady = new boolean[4];
 
         for (int i = 0; i< 4 ; i++) {
@@ -110,7 +112,8 @@ public class ENLoadingView extends View {
         for (int i = 0; i < 4 ;i++) {
             mCurrentRippleX[i] = - 2 * mBgBaseLength;
         }
-        mPath = new Path();
+
+        mPath.reset();
         mPath.moveTo(0, mCenterY + 2 * mBaseLength);
         mPath.lineTo(0, mCenterY);
         mPath.lineTo(mBaseLength / 4, mCenterY - mBaseLength);
@@ -120,8 +123,6 @@ public class ENLoadingView extends View {
         mPath.lineTo(mBaseLength, mCenterY);
         mPath.lineTo(mBaseLength, mCenterY + 2 * mBaseLength);
         mPath.close();
-
-        mBgPath = new Path();
 
         setAlpha(0);
     }
