@@ -56,6 +56,8 @@ public class ENLoadingView extends View {
         mPath = new Path();
         mBgPath = new Path();
         isItemReady = new boolean[4];
+        mFraction = new float[4];
+        mCurrentRippleX = new float[4];
 
         for (int i = 0; i< 4 ; i++) {
             mPaint[i] = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -107,8 +109,6 @@ public class ENLoadingView extends View {
         mCenterY = h / 2;
         mBaseLength = w / 10;
         mBgBaseLength = w / 8;
-        mFraction = new float[4];
-        mCurrentRippleX = new float[4];
         for (int i = 0; i < 4 ;i++) {
             mCurrentRippleX[i] = - 2 * mBgBaseLength;
         }
