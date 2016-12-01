@@ -1,5 +1,6 @@
 #ENViews
 
+[![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ENViews-green.svg?style=true)](https://android-arsenal.com/details/1/4749)
 [![](https://jitpack.io/v/codeestX/ENViews.svg)](https://jitpack.io/#codeestX/ENViews)
 
 ENViews, A cool dynamic view library.All designed by [Nick Buturishvili](https://dribbble.com/nick_buturishvili
