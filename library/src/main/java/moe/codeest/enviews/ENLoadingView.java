@@ -1,14 +1,15 @@
 package moe.codeest.enviews;
 
-import android.animation.ValueAnimator;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Path;
+import android.graphics.PixelFormat;
+import android.graphics.PorterDuffXfermode;
 import android.util.AttributeSet;
-import android.view.View;
-import android.view.animation.LinearInterpolator;
+import android.view.SurfaceHolder;
+import android.view.SurfaceView;
 
 /**
  * Created by codeest on 2016/11/15.
@@ -16,7 +17,7 @@ import android.view.animation.LinearInterpolator;
  * 我还在好奇里面装的究竟是啤酒还是橙汁 0v0
  */
 
-public class ENLoadingView extends View {
+public class ENLoadingView extends SurfaceView {
 
     private static final int STATE_SHOW = 0;
 
@@ -24,15 +25,21 @@ public class ENLoadingView extends View {
 
     private static final int DEFAULT_RIPPLE_SPEED = 2;
 
+    private static final float DEFAULT_MOVE_SPEED = 0.01f;
+
     private Paint mPaint[], mBeerPaint[], mBubblePaint[];
 
     private Path mPath, mBgPath;
 
-    private ValueAnimator valueAnim;
+    private Thread mThread;
 
     private boolean isItemReady[];
 
+    private float mCurrentRippleX[];
+
     private float mFraction[];
+
+    private float mTemp = 0;
 
     private int mCurrentState;
 
@@ -40,16 +47,21 @@ public class ENLoadingView extends View {
 
     private float mCenterX, mCenterY;
 
-    private float mBaseLength;
-    private float mBgBaseLength;
-    private float mCurrentRippleX[];
+    private SurfaceHolder surfaceHolder;
+
+    private float mBaseLength, mBgBaseLength;
 
     public ENLoadingView(Context context) {
         super(context);
+        init();
     }
 
     public ENLoadingView(Context context, AttributeSet attrs) {
         super(context, attrs);
+        init();
+    }
+
+    private void init() {
         mPaint = new Paint[4];
         mBeerPaint = new Paint[4];
         mBubblePaint = new Paint[4];
@@ -58,6 +70,7 @@ public class ENLoadingView extends View {
         isItemReady = new boolean[4];
         mFraction = new float[4];
         mCurrentRippleX = new float[4];
+        mCurrentState = STATE_HIDE;
 
         for (int i = 0; i< 4 ; i++) {
             mPaint[i] = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -75,29 +88,28 @@ public class ENLoadingView extends View {
             mBubblePaint[i].setStyle(Paint.Style.FILL);
             mBubblePaint[i].setColor(Color.parseColor("#f5fba1"));
         }
-
-        valueAnim = ValueAnimator.ofFloat(1.f, 100.f);
-        valueAnim.setDuration(3000);
-        valueAnim.setInterpolator(new LinearInterpolator());
-        valueAnim.setRepeatCount(ValueAnimator.INFINITE);
-        valueAnim.setRepeatMode(ValueAnimator.RESTART);
-        valueAnim.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        surfaceHolder = getHolder();
+        setZOrderOnTop(true);
+        surfaceHolder.setFormat(PixelFormat.TRANSLUCENT);
+        surfaceHolder.addCallback(new SurfaceHolder.Callback() {
             @Override
-            public void onAnimationUpdate(ValueAnimator valueAnimator) {
-                for (int i = 0;i < 4 ; i++) {
-                    float temp = valueAnimator.getAnimatedFraction() - i * 0.25f;
-                    if (temp < 0)
-                        temp += 1;
-                    mFraction[i] = temp;
-                    if (mFraction[0] > i * 0.25f && !isItemReady[i]) {
-                        isItemReady[i] = true;
-                    }
+            public void surfaceCreated(SurfaceHolder surfaceHolder) {
+
+            }
+
+            @Override
+            public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+                if (mThread != null) {
+                    mThread.interrupt();
+                    mThread = null;
                 }
-                invalidate();
             }
         });
-
-        mCurrentState = STATE_HIDE;
     }
 
     @Override
@@ -123,16 +135,52 @@ public class ENLoadingView extends View {
         mPath.lineTo(mBaseLength, mCenterY);
         mPath.lineTo(mBaseLength, mCenterY + 2 * mBaseLength);
         mPath.close();
-
-        setAlpha(0);
     }
 
-    @Override
-    protected void onDraw(Canvas canvas) {
-        super.onDraw(canvas);
+    private Runnable animRunnable = new Runnable() {
+        @Override
+        public void run() {
+            try {
+                while (mCurrentState == STATE_SHOW) {
+                    Thread.sleep(5);
+                    flush();
+                    draw();
+                }
+                if (mCurrentState == STATE_HIDE) {
+                    clearCanvas();
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    };
+
+    private void flush() {
+        if (mTemp >= 1)
+            mTemp = 0;
+        mTemp += DEFAULT_MOVE_SPEED;
+        for (int i = 0;i < 4 ; i++) {
+            float temp = mTemp - i * 0.25f;
+            if (temp < 0)
+                temp += 1;
+            mFraction[i] = temp;
+            if (mFraction[0] > i * 0.25f && !isItemReady[i]) {
+                isItemReady[i] = true;
+            }
+        }
+    }
+
+    private void draw() {
+        Canvas canvas = surfaceHolder.lockCanvas();
+        if(canvas == null)
+            return;
+        mPaint[0].setXfermode(new PorterDuffXfermode(android.graphics.PorterDuff.Mode.CLEAR));  //使用这只画笔清屏，清屏后恢复画笔
+        canvas.drawPaint(mPaint[0]);
+        mPaint[0].setXfermode(new PorterDuffXfermode(android.graphics.PorterDuff.Mode.DST_OVER));
         for (int i = 0; i < 4 ; i++) {
             drawItem(canvas, mFraction[i], i);
         }
+        surfaceHolder.unlockCanvasAndPost(canvas);
     }
 
     private void drawItem(Canvas canvas, float mFraction, int index) {
@@ -198,8 +246,8 @@ public class ENLoadingView extends View {
             return;
         }
         mCurrentState = STATE_SHOW;
-        this.animate().alpha(1).setDuration(200).start();
-        valueAnim.start();
+        mThread = new Thread(animRunnable);
+        mThread.start();
     }
 
     public void hide() {
@@ -207,9 +255,19 @@ public class ENLoadingView extends View {
             return;
         }
         mCurrentState = STATE_HIDE;
-        this.animate().alpha(0).setDuration(200).start();
-        valueAnim.cancel();
         resetData();
+    }
+
+    private void clearCanvas() {
+        Canvas canvas = surfaceHolder.lockCanvas();
+        if(canvas == null)
+            return;
+        mPaint[0].setXfermode(new PorterDuffXfermode(android.graphics.PorterDuff.Mode.CLEAR));
+        canvas.drawPaint(mPaint[0]);
+        mPaint[0].setXfermode(new PorterDuffXfermode(android.graphics.PorterDuff.Mode.DST_OVER));
+        surfaceHolder.unlockCanvasAndPost(canvas);
+        mThread.interrupt();
+        mThread = null;
     }
 
     private void resetData() {
@@ -217,5 +275,6 @@ public class ENLoadingView extends View {
             isItemReady[i] = false;
             mCurrentRippleX[i] = - 2 * mBgBaseLength;
         }
+        mTemp = 0;
     }
 }

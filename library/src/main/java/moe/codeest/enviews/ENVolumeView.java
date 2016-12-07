@@ -196,7 +196,7 @@ public class ENVolumeView extends View{
             canvas.drawPath(mDstPath, mPaint);
 
             canvas.save();  //嗷~ 在这画小声波
-            canvas.translate( - (1 - mFraction) * mBaseLength / 3, 0);
+            canvas.translate( - (1 - mFraction) * mBaseLength / 5 * 2 * mVolumeValue / 100, 0);
             canvas.drawArc(mCenterX - 1.5f * mBaseLength,
                     mCenterY - mBaseLength,
                     mCenterX + 0.5f * mBaseLength,
@@ -211,7 +211,7 @@ public class ENVolumeView extends View{
             canvas.restore();
 
             canvas.save();  //嗷~ 在这画大声波
-            canvas.translate( - (1 - mFraction) * mBaseLength / 3, 0);
+            canvas.translate( - (1 - mFraction) * mBaseLength / 5 * 2 * mVolumeValue / 100, 0);
             canvas.drawArc(mCenterX - 1.6f * mBaseLength,
                     mCenterY - 1.6f * mBaseLength,
                     mCenterX + 1.6f * mBaseLength,
