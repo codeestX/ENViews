@@ -6,7 +6,7 @@ group='com.github.codeestX'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion '25.0.0'
 
     defaultConfig {
         minSdkVersion 21
