@@ -1,4 +1,4 @@
-#ENViews
+# ENViews
 
 [![Android Arsenal](https://img.shields.io/badge/Android%20Arsenal-ENViews-green.svg?style=true)](https://android-arsenal.com/details/1/4749)
 [![](https://jitpack.io/v/codeestX/ENViews.svg)](https://jitpack.io/#codeestX/ENViews)
@@ -8,7 +8,8 @@ ENViews, A cool dynamic view library.All designed by [Nick Buturishvili](https:/
 ENViews, 一个华丽丽的动效控件库，所有控件原型取自[Nick Buturishvili](https://dribbble.com/nick_buturishvili
 )的设计作品
 
-#Preview
+# Preview
+
 | Original design | Android demo | Class |
 | :--: | :--: | :--: |
 | ![](https://github.com/codeestX/ENViews/raw/master/preview/o_download.gif) | ![](https://github.com/codeestX/ENViews/raw/master/preview/download.gif) |ENDownloadView|
@@ -19,7 +20,7 @@ ENViews, 一个华丽丽的动效控件库，所有控件原型取自[Nick Butur
 |![](https://github.com/codeestX/ENViews/raw/master/preview/o_scroll.gif) | ![](https://github.com/codeestX/ENViews/raw/master/preview/scroll.gif)  |ENScrollView
 |![](https://github.com/codeestX/ENViews/raw/master/preview/o_refresh.gif)  | ![](https://github.com/codeestX/ENViews/raw/master/preview/refresh.gif)  |ENRefreshView|
 
-#Usage
+# Usage
 
 Step 1. Add the JitPack repository to your build file
 
@@ -39,12 +40,12 @@ Step 2. Add the dependency
 Step 3. See DemoProject for details.
 
 
-#Thanks
+# Thanks
 * [Nick Buturishvili](https://dribbble.com/nick_buturishvili)
 
 * [GcsSloop](http://www.gcssloop.com/customview/CustomViewIndex)
 
-#License
+# License
 
       Copyright (c) 2016 codeestX
 
