@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.CornerPathEffect;
 import android.graphics.Paint;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
@@ -78,6 +79,7 @@ public class ENPlayView extends View{
         mPaint.setStrokeCap(Paint.Cap.ROUND);
         mPaint.setColor(lineColor);
         mPaint.setStrokeWidth(lineWidth);
+        mPaint.setPathEffect(new CornerPathEffect(1));
 
         mBgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
         mBgPaint.setStyle(Paint.Style.STROKE);
@@ -130,6 +132,7 @@ public class ENPlayView extends View{
             canvas.drawLine(mCenterX - mCircleRadius, mCenterY - 1.6f * mCircleRadius,
                     mCenterX - mCircleRadius, mCenterY + 1.6f * mCircleRadius, mPaint);
 
+            if (mFraction != 0)
             canvas.drawArc(mRectF, 0f, 180f / 0.3f * mFraction, false, mPaint);
 
             canvas.drawArc(mBgRectF, -105 + 360 * mFraction, 360 * (1 - mFraction), false, mPaint);
